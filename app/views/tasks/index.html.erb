@@ -1,11 +1,16 @@
-<div >
-  <h1>Tasks List</h1>
-  <ul>
-    <% @tasks.each do |task| %>
-      <li><input type="checkbox" <%= 'checked' if task.completed %>>
-      <label><%= link_to task.title, task_path(task) %></label>
-      <label><%= link_to "🗑️", task_path(task), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %></label></li>
+<h1 class="mb-3">Tasks List</h1>
+<table>
+  <tr class="text-center">
+    <th>Status</th>
+    <th>Title</th>
+    <th>Delete?</th>
+  </tr>
+  <% @tasks.each do |task| %>
+  <tr class="text-center">
+    <td><input type="checkbox" <%= 'checked' if task.completed %>></td>
+    <td><label><%= link_to task.title, task_path(task), class: "text-decoration-none" %></label></td>
+    <td><label><%= link_to "🗑️", task_path(task), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %></label></td>
     <% end %>
-  </ul>
-  <%= link_to 'Create a new task', '/tasks/new' %>
-</div>
+  </tr>
+</table>
+  <%= link_to 'Create a new task', '/tasks/new', class: 'btn btn-success m-3' %>
